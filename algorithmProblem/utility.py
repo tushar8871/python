@@ -57,17 +57,31 @@ class Utility:
 
     #binary search method to search integer in list , low=lowest value and high = highest value
     @staticmethod
-    def binarySearchInteger(bList,low,high,num):
+    def binarySearch(bList,low,high,num):
         if high>=low:
             mid=int((low+high)/2)
             if bList[mid]==num:
                 return mid
             elif bList[mid]>num:
-                return Utility.binarySearchInteger(bList,low,mid-1,num)
+                return Utility.binarySearch(bList,low,mid-1,num)
             else:
-                return Utility.binarySearchInteger(bList,mid+1,high,num)
+                return Utility.binarySearch(bList,mid+1,high,num)
         else:
             return -1
+
+
+    #function for insertion sort for integer
+    @staticmethod
+    def insertionSort(bList):
+        for i in range(len(bList)):
+            temp=bList[i]
+            j=i-1
+            while j>=0 and temp<bList[j]:
+               bList[j+1]=bList[j]
+               j-=1
+            bList[j+1]=temp
+
+        return bList
 
 
 
@@ -75,7 +89,8 @@ class Utility:
 def main():
 
     choice=int(input("Enter your choice \n 1. Anagram Detection \n 2. Prime Number in range \n"
-                    " 3. Binary Search of Integer \n 4. Binary search for string \n"))
+                    " 3. Binary Search of Integer \n 4. Binary search for string \n 5. Insertion"
+                    "sort for integer \n 6. Insertion sort for string \n"))
 
     if choice==1:
         #angaram validation  get input from user
@@ -105,7 +120,7 @@ def main():
         #Binary search for an integer
         length=len(bList)
         num=int(input("Enter number to search in list : "))
-        res=Utility.binarySearchInteger(bList,0,length-1,num)
+        res=Utility.binarySearch(bList,0,length-1,num)
         if res!=-1:
             print("Element found at position ",res)
         else:
@@ -122,11 +137,32 @@ def main():
         #Binary search for string
         length=len(bList)
         char=input("Enter string to search in list : ")
-        res=Utility.binarySearchInteger(bList,0,length-1,char)
+        res=Utility.binarySearch(bList,0,length-1,char)
         if res!=-1:
             print("Element found at position ",res)
         else:
             print("Not found ")
+
+    elif choice==5:
+        #Sort list element using insertion sort
+        #generate list
+        bList=[]
+        bList=Utility.createList(bList)
+        #sort list
+        bList=Utility.insertionSort(bList)
+        print("Sorted list : ", bList)
+
+    elif choice==6:
+        #genrate list to search element
+        bList=[]
+        print("Enter elements in ascending order and between A-Z")
+        number=int(input("Enter how many elements you want to add : "))
+        print("Enter elements : ")
+        for i in range(number):
+            bList.append(input())
+        #sort list using insertionSort
+        bList=Utility.insertionSort(bList)
+        print("Sorted list : ", bList)
 
 
 main()
