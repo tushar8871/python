@@ -55,7 +55,7 @@ class Utility:
         return bList
 
 
-    #binary search method to search integer in list , low=lowest value and high = highest value
+    #binary search method to search element in list , low=lowest value and high = highest value
     @staticmethod
     def binarySearch(bList,low,high,num):
         if high>=low:
@@ -70,7 +70,7 @@ class Utility:
             return -1
 
 
-    #function for insertion sort for integer
+    #function for insertion sort
     @staticmethod
     def insertionSort(bList):
         for i in range(len(bList)):
@@ -84,13 +84,27 @@ class Utility:
         return bList
 
 
+    #function for bubble sort
+    @staticmethod
+    def bubbleSort(bList):
+        for i in range(len(bList)):
+            for j in range(i+1,len(bList)):
+                if bList[i]>bList[j]:
+                    temp=bList[i]
+                    bList[i]=bList[j]
+                    bList[j]=temp
+
+        return bList
+
+
 
 #main function
 def main():
 
     choice=int(input("Enter your choice \n 1. Anagram Detection \n 2. Prime Number in range \n"
                     " 3. Binary Search of Integer \n 4. Binary search for string \n 5. Insertion"
-                    "sort for integer \n 6. Insertion sort for string \n"))
+                    "sort for integer \n 6. Insertion sort for string \n 7. Bubble sort for integer \n"
+                    " 8. Bubble sort for string \n "))
 
     if choice==1:
         #angaram validation  get input from user
@@ -162,6 +176,27 @@ def main():
             bList.append(input())
         #sort list using insertionSort
         bList=Utility.insertionSort(bList)
+        print("Sorted list : ", bList)
+
+    elif choice==7:
+        #Sort list element using bubble sort
+        #generate list
+        bList=[]
+        bList=Utility.createList(bList)
+        #sort list
+        bList=Utility.bubbleSort(bList)
+        print("Sorted list : ",bList)
+
+    elif choice==8:
+        #genrate list to search element
+        bList=[]
+        print("Enter elements in ascending order and between A-Z")
+        number=int(input("Enter how many elements you want to add : "))
+        print("Enter elements : ")
+        for i in range(number):
+            bList.append(input())
+        #sort list using insertionSort
+        bList=Utility.bubbleSort(bList)
         print("Sorted list : ", bList)
 
 
