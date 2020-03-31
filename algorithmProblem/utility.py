@@ -1,4 +1,5 @@
 # Generate utility class which contain all static methods
+
 class Utility:
 
     #generate anagram method to valid strings if it is anagram or not
@@ -8,6 +9,7 @@ class Utility:
             return True
         else:
             return False
+
 
     #find prime number between range 0-1000
     @staticmethod
@@ -26,26 +28,105 @@ class Utility:
             print("Modulo divide by error")
         return resultList
 
-util=Utility()
 
+    #Validate if number is palindrome or not
+    @staticmethod
+    def palindrome(number):
+        temp=number
+        sum=0
+        while temp!=0:
+            remainder=temp%10
+            sum=sum*10+remainder
+            temp=int(temp/10)
+
+        if sum==number:
+            print(number," is palindrome !")
+        else:
+            print("Not palindrome !")
+
+
+    #Create list
+    @staticmethod
+    def createList(bList):
+        number=int(input("Enter how many elements you want to add : "))
+        print("Enter elements : ")
+        for i in range(number):
+            bList.append(int(input()))
+        return bList
+
+
+    #binary search method to search integer in list , low=lowest value and high = highest value
+    @staticmethod
+    def binarySearchInteger(bList,low,high,num):
+        if high>=low:
+            mid=int((low+high)/2)
+            if bList[mid]==num:
+                return mid
+            elif bList[mid]>num:
+                return Utility.binarySearchInteger(bList,low,mid-1,num)
+            else:
+                return Utility.binarySearchInteger(bList,mid+1,high,num)
+        else:
+            return -1
+
+
+
+#main function
 def main():
 
-    choice=int(input("Enter your choice \n 1. Anagram Detection \n 2. Prime Number in range \n"))
+    choice=int(input("Enter your choice \n 1. Anagram Detection \n 2. Prime Number in range \n"
+                    " 3. Binary Search of Integer \n 4. Binary search for string \n"))
 
     if choice==1:
         #angaram validation  get input from user
         str1=input("Enter string 1 : ")
         str2=input("Enter string 2 : ")
         #check if it is valid or not
-        if (util.validAnagram(str1,str2)):
+        if (Utility.validAnagram(str1,str2)):
             print("String is anagram ",str1,str2)
         else:
             print("String is not anagram")
+
     elif choice==2:
         #find prime number between 0-1000
         num1=int(input("Enter initial number 1 to find prime number"))
         num2=int(input("Enter last number "))
-        resultList=util.primeNumber(num1,num2)
+        #get elements in list
+        resultList=Utility.primeNumber(num1,num2)
         print(resultList)
+        #validate if number is palindrome or not
+        num=int(input("Enter number to check if it is palindrome or not "))
+        Utility.palindrome(num)
+
+    elif choice==3:
+        #genrate list to search
+        bList=[]
+        bList=Utility.createList(bList)
+        #Binary search for an integer
+        length=len(bList)
+        num=int(input("Enter number to search in list : "))
+        res=Utility.binarySearchInteger(bList,0,length-1,num)
+        if res!=-1:
+            print("Element found at position ",res)
+        else:
+            print("Not found ")
+
+    elif choice==4:
+        #genrate list to search element
+        bList=[]
+        print("Enter elements in ascending order and between A-Z")
+        number=int(input("Enter how many elements you want to add : "))
+        print("Enter elements : ")
+        for i in range(number):
+            bList.append(input())
+        #Binary search for string
+        length=len(bList)
+        char=input("Enter string to search in list : ")
+        res=Utility.binarySearchInteger(bList,0,length-1,char)
+        if res!=-1:
+            print("Element found at position ",res)
+        else:
+            print("Not found ")
+
 
 main()
