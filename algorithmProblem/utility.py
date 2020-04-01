@@ -171,6 +171,22 @@ class Utility:
 
         return bList
 
+    #function for vending machine
+    @staticmethod
+    def vendingMachine(amount):
+        #list of notes
+        notes=[1000,500,200,100,50,20,10,5,2,1]
+        #counter for each notes
+        countNotes=[0,0,0,0,0,0,0,0,0,0]
+        count=0
+        #Zip is used for mapping of two array
+        for i,j in zip(notes,countNotes):
+            if amount>=i:
+                j=int(amount/i)
+                amount=amount-j*i
+                #j+=1
+                print(i," : ",j)
+
 
 
 #main function
@@ -179,8 +195,8 @@ def main():
     choice=int(input("Enter your choice \n 1. Anagram Detection \n 2. Prime Number in range \n"
                     " 3. Binary Search of Integer \n 4. Binary search for string \n 5. Insertion"
                     "sort for integer \n 6. Insertion sort for string \n 7. Bubble sort for integer \n"
-                    "8. Bubble sort for string \n 9. Find element b/w range \n 10. search word in file \n"
-                    "11. Merge sort"))
+                    " 8. Bubble sort for string \n 9. Find element b/w range \n 10. search word in file \n"
+                    " 11. Merge sort \n 12. Vending machine"))
 
     if choice==1:
         #angaram validation  get input from user
@@ -301,6 +317,13 @@ def main():
         #sort list using Merge Sort
         bList=Utility.mergeSort(bList)
         print("Sorted array : ",bList)
+
+
+    elif choice==12:
+        #get amount from user
+        amount=int(input("Enter amount in Rs : "))
+        result=[]
+        result.append(Utility.vendingMachine(amount))
 
 
 
