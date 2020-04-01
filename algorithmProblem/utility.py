@@ -1,6 +1,7 @@
 # Generate utility class which contain all static methods
 import datetime
 import calendar
+import math
 
 class Utility:
 
@@ -215,6 +216,45 @@ class Utility:
         elif d0==6:
             print("Saturday")
 
+    #function to convert temprature from celsius to farheniet and vice versa
+    @staticmethod
+    def tempConversion():
+        print("Enter your choice : \n 1. farheniet to celsius \n 2. celsius to farheniet")
+        choice=int(input())
+
+        if choice==1:
+            temprature=int(input("enter temprature between 32-212"))
+            if temprature>=32 and temprature<=212:
+                return ((temprature-32)*5/9)
+            else:
+                print("Enter value bw 32-212 F")
+        else:
+            temprature=int(input("enter temprature between 0-100"))
+            if temprature>=0 and temprature<=100:
+                return ((temprature*9/5)+32)
+            else:
+                print("Enter value bw 0-100 C")
+
+
+    #generate function to calculate monthly payement of an employee
+    @staticmethod
+    def monthPayment(year,amount,rate):
+        r=(rate/(12*100))
+        totalMonth=12*year
+
+        monthPay=((amount*r)/(1-((1+r)**(-totalMonth))))
+        return monthPay
+
+    #generate square root of number using newton's method
+    @staticmethod
+    def squareRoot(number):
+        epsilon=float(1e-15)
+        t=number
+        while abs(t-number/t)>epsilon*t:
+            t=float((number/t +t)/2)
+
+        print("Square root of number",number," is :",t )
+
 
 #main function
 def main():
@@ -223,7 +263,8 @@ def main():
                     " 3. Binary Search of Integer \n 4. Binary search for string \n 5. Insertion"
                     "sort for integer \n 6. Insertion sort for string \n 7. Bubble sort for integer \n"
                     " 8. Bubble sort for string \n 9. Find element b/w range \n 10. search word in file \n"
-                    " 11. Merge sort \n 12. Vending machine \n 13. Day of week \n "))
+                    " 11. Merge sort \n 12. Vending machine \n 13. Day of week \n 14. Temprature Conversion"
+                    "\n 15. Monthly payment \n 16. sqrt nonNegative number \n "))
 
     if choice==1:
         #angaram validation  get input from user
@@ -356,6 +397,24 @@ def main():
         #get date from user
         date=input("Enter date as dd/mm/yyyy: ")
         Utility.dayWeek(date)
+
+    elif choice==14:
+        #get temprature from user
+        res=Utility.tempConversion()
+        print("Temprature is : ",res)
+
+    elif choice==15:
+        #get years ,principal amount,rate of intrest from user
+        year=int(input("Enter year : "))
+        amount=int(input("Enter principal amount : "))
+        rate=int(input("Enter intrest rate : "))
+        monthPay=Utility.monthPayment(year,amount,rate)
+        print("Monthly payement is : ",monthPay)
+
+    elif choice==16:
+        #Get number from user to calculate sqrt of number using newton's method
+        number=int(input("Enter number : "))
+        Utility.squareRoot(number)
 
 
 
