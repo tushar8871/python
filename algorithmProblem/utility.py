@@ -130,6 +130,46 @@ class Utility:
         except Exception:
             print("File not found ")
 
+    #function to sort string using merge sort
+    @staticmethod
+    def mergeSort(bList):
+        k=0
+        if len(bList)>1:
+            #calculate mid
+            mid=int(len(bList)/2)
+            #create two temporary list
+            left=bList[:mid]
+            right=bList[mid:]
+
+            #recursively break list until it didnt  have 2 elements
+            Utility.mergeSort(left)
+            Utility.mergeSort(right)
+            #initailize i and j for compariong list element
+            i=j=0
+
+            while (i<len(left)) and (j<len(right)):
+                if left[i]<right[j]:
+                    bList[k]=left[i]
+                    i+=1
+                    k+=1
+                else:
+                    bList[k]=right[j]
+                    j+=1
+                    k+=1
+
+            #if any of element left in temp list then add here
+            while i<len(left):
+                bList[k]=left[i]
+                print(bList)
+                i+=1
+                k+=1
+            while j<len(right):
+                bList[k]=right[j]
+                print(bList)
+                j+=1
+                k+=1
+
+        return bList
 
 
 
@@ -139,8 +179,8 @@ def main():
     choice=int(input("Enter your choice \n 1. Anagram Detection \n 2. Prime Number in range \n"
                     " 3. Binary Search of Integer \n 4. Binary search for string \n 5. Insertion"
                     "sort for integer \n 6. Insertion sort for string \n 7. Bubble sort for integer \n"
-                    " 8. Bubble sort for string \n 9. Find element b/w range \n 10. search word in file"
-                    ""))
+                    "8. Bubble sort for string \n 9. Find element b/w range \n 10. search word in file \n"
+                    "11. Merge sort"))
 
     if choice==1:
         #angaram validation  get input from user
@@ -249,6 +289,19 @@ def main():
             print("Found word ")
         else:
             print("Not found ")
+
+    elif choice==11:
+        #genrate list to search element
+        bList=[]
+        print("Enter elements")
+        number=int(input("Enter how many elements you want to add : "))
+        print("Enter elements : ")
+        for i in range(number):
+            bList.append(input())
+        #sort list using Merge Sort
+        bList=Utility.mergeSort(bList)
+        print("Sorted array : ",bList)
+
 
 
 main()
