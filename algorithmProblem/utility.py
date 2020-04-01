@@ -1,4 +1,6 @@
 # Generate utility class which contain all static methods
+import datetime
+import calendar
 
 class Utility:
 
@@ -188,6 +190,31 @@ class Utility:
                 print(i," : ",j)
 
 
+    #function to find day of that date
+    @staticmethod
+    def dayWeek(date):
+        day,month,year=(int(i) for i in date.split("/"))
+        print(day , month , year)
+        y0 = (year-(14-month ) / 12)
+        x  = (y0 + (y0/4) -(y0 /100) + (y0 /400))
+        m0 = (month + 12 * ((14 - month ) / 12))
+        d0 = int((day + x + (31*m0 / 12))%7-1)
+        print(d0)
+        if d0==0:
+            print("Sunday")
+        elif d0==1:
+            print("Monday")
+        elif d0==2:
+            print("Tuesday")
+        elif d0==3:
+            print("Wednesday")
+        elif d0==4:
+            print("Thursday")
+        elif d0==5:
+            print("Friday")
+        elif d0==6:
+            print("Saturday")
+
 
 #main function
 def main():
@@ -196,7 +223,7 @@ def main():
                     " 3. Binary Search of Integer \n 4. Binary search for string \n 5. Insertion"
                     "sort for integer \n 6. Insertion sort for string \n 7. Bubble sort for integer \n"
                     " 8. Bubble sort for string \n 9. Find element b/w range \n 10. search word in file \n"
-                    " 11. Merge sort \n 12. Vending machine"))
+                    " 11. Merge sort \n 12. Vending machine \n 13. Day of week \n "))
 
     if choice==1:
         #angaram validation  get input from user
@@ -324,6 +351,11 @@ def main():
         amount=int(input("Enter amount in Rs : "))
         result=[]
         result.append(Utility.vendingMachine(amount))
+
+    elif choice==13:
+        #get date from user
+        date=input("Enter date as dd/mm/yyyy: ")
+        Utility.dayWeek(date)
 
 
 
