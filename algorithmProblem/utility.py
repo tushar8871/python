@@ -96,6 +96,20 @@ class Utility:
 
         return bList
 
+    #function to search element which user thinks
+    @staticmethod
+    def findNumber(low,high):
+        mid=int((low+high)/2)
+        print("Press 1 for greater than , 2 for less than and 0 for match : ",mid)
+        choice=int(input())
+        if choice==1:
+            Utility.findNumber(mid+1,high)
+        elif choice==2:
+            Utility.findNumber(low,mid-1)
+        elif choice==0:
+            low=mid
+            high=mid
+            print("Number is : ",low)
 
 
 #main function
@@ -104,7 +118,7 @@ def main():
     choice=int(input("Enter your choice \n 1. Anagram Detection \n 2. Prime Number in range \n"
                     " 3. Binary Search of Integer \n 4. Binary search for string \n 5. Insertion"
                     "sort for integer \n 6. Insertion sort for string \n 7. Bubble sort for integer \n"
-                    " 8. Bubble sort for string \n "))
+                    " 8. Bubble sort for string \n 9. Find element b/w range "))
 
     if choice==1:
         #angaram validation  get input from user
@@ -198,6 +212,11 @@ def main():
         #sort list using insertionSort
         bList=Utility.bubbleSort(bList)
         print("Sorted list : ", bList)
+
+    elif choice==9:
+        #get inputfom user upto which you want to guess a number
+        number=int(input("Enter number upto which you want to guess any one number : "))
+        Utility.findNumber(0,number)
 
 
 main()
