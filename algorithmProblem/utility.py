@@ -112,13 +112,35 @@ class Utility:
             print("Number is : ",low)
 
 
+    #function to read file and search a word in that file
+    @staticmethod
+    def readFile(file,word):
+        #try except block needed if file not found exception occurs
+        try:
+            #open file in read
+            with open(file) as rf:
+                #read lines in file
+                readFile=rf.readlines()
+                for index in readFile:
+                    #checking if word is present or not in file
+                    if word in index:
+                        #if it present then return true
+                        return True
+                return 0
+        except Exception:
+            print("File not found ")
+
+
+
+
 #main function
 def main():
 
     choice=int(input("Enter your choice \n 1. Anagram Detection \n 2. Prime Number in range \n"
                     " 3. Binary Search of Integer \n 4. Binary search for string \n 5. Insertion"
                     "sort for integer \n 6. Insertion sort for string \n 7. Bubble sort for integer \n"
-                    " 8. Bubble sort for string \n 9. Find element b/w range "))
+                    " 8. Bubble sort for string \n 9. Find element b/w range \n 10. search word in file"
+                    ""))
 
     if choice==1:
         #angaram validation  get input from user
@@ -217,6 +239,16 @@ def main():
         #get inputfom user upto which you want to guess a number
         number=int(input("Enter number upto which you want to guess any one number : "))
         Utility.findNumber(0,number)
+
+    elif choice==10:
+        #read word from file and search a word in that file
+        file=input("Enter file : ")
+        word=input("Enter word to be search in file : ")
+        res=Utility.readFile(file,word)
+        if res:
+            print("Found word ")
+        else:
+            print("Not found ")
 
 
 main()
