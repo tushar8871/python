@@ -305,7 +305,7 @@ def main():
                     " 8. Bubble sort for string \n 9. Find element b/w range \n 10. search word in file \n"
                     " 11. Merge sort \n 12. Vending machine \n 13. Day of week \n 14. Temprature Conversion"
                     "\n 15. Monthly payment \n 16. sqrt nonNegative number \n 17. Decimal to binary \n "
-                    "\n 18. Swap nibbles \n"))
+                    "\n 18. Swap nibbles \n 19 . Task deadline \n"))
 
     if choice==1:
         #angaram validation  get input from user
