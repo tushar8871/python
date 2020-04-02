@@ -1,6 +1,5 @@
 # Generate utility class which contain all static methods
 import datetime
-import calendar
 import math
 
 class Utility:
@@ -163,12 +162,10 @@ class Utility:
             #if any of element left in temp list then add here
             while i<len(left):
                 bList[k]=left[i]
-                print(bList)
                 i+=1
                 k+=1
             while j<len(right):
                 bList[k]=right[j]
-                print(bList)
                 j+=1
                 k+=1
 
@@ -187,7 +184,6 @@ class Utility:
             if amount>=i:
                 j=int(amount/i)
                 amount=amount-j*i
-                #j+=1
                 print(i," : ",j)
 
 
@@ -255,6 +251,50 @@ class Utility:
 
         print("Square root of number",number," is :",t )
 
+    #reverse of string
+    @staticmethod
+    def reverse(bString):
+        str=""
+        for i in bString:
+            str=i+str
+
+        return str
+
+    #generate binary number from given number
+    @staticmethod
+    def decimalBinary(number):
+        binaryString=""
+        temp=number
+        while temp!=0:
+            remainder=temp%2
+            binaryString+=str(remainder)
+            temp=int(temp/2)
+        binaryString=Utility.reverse(binaryString)
+        return binaryString
+
+
+    #function to swap nibbles and generate decimal number
+    @staticmethod
+    def swapNibbles(bNumber):
+        return ((bNumber & 0x0F) << 4 | (bNumber &0xF0) >> 4)
+
+
+    #function to check if number is power of 2 or not
+    @staticmethod
+    def powerOf2(number):
+        sum=0
+        i=1
+        while i < number:
+            if sum > number:
+                return 0
+                break
+            elif sum == number:
+                return 1
+                break
+            else:
+                sum=2**i
+                i+=1
+
 
 #main function
 def main():
@@ -264,7 +304,8 @@ def main():
                     "sort for integer \n 6. Insertion sort for string \n 7. Bubble sort for integer \n"
                     " 8. Bubble sort for string \n 9. Find element b/w range \n 10. search word in file \n"
                     " 11. Merge sort \n 12. Vending machine \n 13. Day of week \n 14. Temprature Conversion"
-                    "\n 15. Monthly payment \n 16. sqrt nonNegative number \n "))
+                    "\n 15. Monthly payment \n 16. sqrt nonNegative number \n 17. Decimal to binary \n "
+                    "\n 18. Swap nibbles \n"))
 
     if choice==1:
         #angaram validation  get input from user
@@ -327,9 +368,9 @@ def main():
         print("Sorted list : ", bList)
 
     elif choice==6:
-        #genrate list to search element
+        #genrate list to sort element
         bList=[]
-        print("Enter elements in ascending order and between A-Z")
+        print("Enter elements between A-Z")
         number=int(input("Enter how many elements you want to add : "))
         print("Enter elements : ")
         for i in range(number):
@@ -415,6 +456,25 @@ def main():
         #Get number from user to calculate sqrt of number using newton's method
         number=int(input("Enter number : "))
         Utility.squareRoot(number)
+
+    elif choice==17:
+        #get number from user
+        number=int(input("Enter decimal number : "))
+        binary=Utility.decimalBinary(number)
+        print("Binary number is : ",binary)
+
+    elif choice==18:
+        #get input from user and convert into binary then swap nibbles
+        number=int(input("Enter decimal number : "))
+        binary=Utility.swapNibbles(number)
+        print("After swap decimal number is : ",binary)
+        #now generate resultant number is power of 2
+        result=Utility.powerOf2(binary)
+        if result==1:
+            print("Resultant Number is power of 2 ",binary)
+        else:
+            print("Resultant number is not power of 2 ",binary)
+
 
 
 
