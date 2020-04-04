@@ -25,22 +25,22 @@ x=""
 for i in range(len(expr)) :
     if (expr[i] == '(' or expr[i] == '[' or expr[i] == '{') :
         # Push the element in the stack
-        stObj.push(expr[i]);
-        continue;
+        stObj.push(expr[i])
+        continue
         # IF current character is not opening
         # bracket, then it must be closing.
         # So stack cannot be empty at this point.
     if stObj.isEmpty() :
-        isBalanced=False;
+        isBalanced=False
 
     if expr[i] == ')' :
-        stObj.pop();
+        stObj.pop()
 
     elif expr[i] == '}':
-        stObj.pop();
+        stObj.pop()
 
     elif expr[i] == ']':
-        stObj.pop();
+        stObj.pop()
 
     # Check Empty Stack
     if stObj.isEmpty():
