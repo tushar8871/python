@@ -34,16 +34,13 @@ for i in range(len(expr)) :
         isBalanced=False;
 
     if expr[i] == ')' :
-        # Store the top element in a
-        x=stObj.pop();
+        stObj.pop();
 
     elif expr[i] == '}':
-        # Store the top element in b
-        x = stObj.pop();
+        stObj.pop();
 
-    elif x == ']':
-        # Store the top element in c
-        x = stObj.pop();
+    elif expr[i] == ']':
+        stObj.pop();
 
     # Check Empty Stack
     if stObj.isEmpty():
