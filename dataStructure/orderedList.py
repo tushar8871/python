@@ -8,7 +8,7 @@ class Node:
 
 
 #created an unordered list class where we implement insert ,delete ,search operation
-class UnorderedList:
+class OrderedList:
 
     #initialize head as none when 1st call is there
     def __init__(self):
@@ -95,7 +95,7 @@ class UnorderedList:
 
 
 #create object of class unOrdered List
-myList=UnorderedList()
+myList=OrderedList()
 size=0
 file=input("Enter file name ")
 #opening a file in read manner
