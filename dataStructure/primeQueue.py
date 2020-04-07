@@ -59,6 +59,7 @@ def primeNumber(initial,end):
                     if (k > initial):
                         qu.enqueue(k)
             #append list of prime no into main list
+            qu.queue=validAnagram(qu.queue)
             resultList.append(qu.queue)
             countt+=1
             initial=temp
@@ -66,17 +67,34 @@ def primeNumber(initial,end):
         print("Modulo divide by error")
     return resultList
 
+#method to reverse a number
+def reverseNum(number):
+    revNum=0
+    rem=0
+    #check if number is greater then 0
+    while number>0:
+        #modulo number by 10 to get rem
+        rem=number%10
+        #store rem into revNum
+        revNum=revNum*10+rem
+        number=number//10
+    #return revNum
+    return revNum
+
 #mehod to check element is anagram or not
-def validAnagram(listt):
+def validAnagram(list1):
     #create anagram list
-    qu=Queue()
+    aList=[]
     #execute loop to check if element is present in list
-    for i in listt:
-        for j in listt:
+    for i in range(len(list1)):
+        for j in range(len(list1)):
+            iVariable=list1[i]
+            jVariable=reverseNum(list1[j])
             #check if element in list is angaram is or not
-            if sorted(str(i))==sorted(str(j)):
-                qu.enqueue(i)
-    return qu.queue
+            if iVariable==jVariable:
+                aList.append(jVariable)
+                break
+    return aList
 
 
 
@@ -85,6 +103,5 @@ initial=int(input("Enter initial vlaue of range : "))
 end=int(input("Enter end vlaue of range : "))
 #method call and store into listt
 listt=primeNumber(initial,end)
-listt=validAnagram(listt)
 #print list of prime number
 print("Prime Number in 2D array are : \n " ,listt)
